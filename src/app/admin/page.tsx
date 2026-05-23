@@ -43,6 +43,7 @@ export default function AdminDashboard() {
   const [errorMsg, setErrorMsg] = useState("");
   const [loginError, setLoginError] = useState("");
   const [isDbProduction, setIsDbProduction] = useState(false);
+  const [noticeMsg, setNoticeMsg] = useState("");
 
   // Filters
   const [searchTerm, setSearchTerm] = useState("");
@@ -111,6 +112,7 @@ export default function AdminDashboard() {
         const data = await response.json();
         setSubmissions(data.submissions || []);
         setIsDbProduction(!data.isMock);
+        setNoticeMsg(data.notice || "");
         setIsAuthenticated(true);
         sessionStorage.setItem("admin_session_pwd", pwd);
       } else {
@@ -149,6 +151,7 @@ export default function AdminDashboard() {
       if (response.ok) {
         const data = await response.json();
         setSubmissions(data.submissions || []);
+        setNoticeMsg(data.notice || "");
       } else {
         setErrorMsg("Failed to refresh records.");
       }
@@ -391,6 +394,12 @@ export default function AdminDashboard() {
             {errorMsg && (
               <p className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg text-xs font-semibold">
                 {errorMsg}
+              </p>
+            )}
+
+            {noticeMsg && (
+              <p className="bg-amber-500/10 border border-amber-500/20 text-amber-400 px-4 py-3 rounded-lg text-xs font-semibold">
+                {noticeMsg}
               </p>
             )}
 
