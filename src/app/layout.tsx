@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CEBPL | Chaurasiya Electricals & Buildwell Private Limited",
     description: "Leading electrical contracting & EPC infrastructure solutions for industrial, commercial, and government projects in India.",
-    url: "https://www.cebpl.com",
+    url: "https://chaurasiyaelectrical.co.in",
     siteName: "CEBPL",
     type: "website",
   },
@@ -52,8 +52,8 @@ export default function RootLayout({
     "@type": "ElectricalBusiness",
     "name": "Chaurasiya Electricals & Buildwell Private Limited",
     "alternateName": "CEBPL",
-    "url": "https://www.cebpl.com",
-    "logo": "https://www.cebpl.com/logo.svg",
+    "url": "https://chaurasiyaelectrical.co.in",
+    "logo": "https://chaurasiyaelectrical.co.in/logo.svg",
     "email": "chaurasiyaelectricalsbuildwell@gmail.com",
     "description": "Leading electrical contracting and EPC infrastructure development company providing HT/LT electrical works, turnkey industrial installations, and commercial electrification across India.",
     "address": {
