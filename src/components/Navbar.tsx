@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Phone, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Mail, ArrowRight } from "lucide-react";
 import MegaMenu from "./MegaMenu";
 import { useQuoteModal } from "./QuoteModalContext";
 import { servicesData } from "@/data/services";
@@ -55,13 +55,17 @@ export default function Navbar() {
       {/* Top Banner (Contact / Social info) */}
       <div className="hidden lg:flex bg-brand-dark border-b border-brand-dark-border py-2 px-6 justify-between items-center text-xs text-gray-400 font-sans z-50 relative top-nav-banner">
         <div className="flex gap-6">
+          <a href="mailto:chaurasiyaelectricalsbuildwell@gmail.com" className="flex items-center gap-1.5 hover:text-brand-blue transition-colors">
+            <Mail size={12} className="text-brand-blue" />
+            chaurasiyaelectricalsbuildwell@gmail.com
+          </a>
           <div className="flex items-center gap-1.5">
             <Phone size={12} className="text-brand-gold" />
             <span>+91 90346 95410</span>
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <span>Class-A Electrical Contracting &amp; EPC Contractor</span>
+          <span>Electrical Contracting &amp; EPC Contractor</span>
           <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
           <span className="text-gray-300">Active projects nationwide</span>
         </div>
@@ -271,6 +275,10 @@ export default function Navbar() {
                   Get a Quote <ArrowRight size={16} />
                 </button>
                 <div className="space-y-2 text-xs text-gray-400">
+                  <p className="flex items-center gap-2">
+                    <Mail size={12} className="text-brand-blue" />
+                    chaurasiyaelectricalsbuildwell@gmail.com
+                  </p>
                   <p className="flex items-center gap-2">
                     <Phone size={12} className="text-brand-gold" />
                     +91 90346 95410

@@ -111,7 +111,7 @@ export default function Home() {
                 className="inline-flex items-center gap-1.5 bg-brand-blue/10 border border-brand-blue/30 rounded-full px-4 py-1.5 text-xs text-brand-blue font-bold uppercase tracking-wider mx-auto lg:mx-0"
               >
                 <Sparkles size={12} className="text-brand-gold animate-pulse" />
-                Class-A Electrical EPC Contracting
+                Electrical EPC Contracting
               </motion.div>
 
               {/* Main Headline */}
@@ -188,10 +188,10 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="space-y-1.5 border-r border-brand-dark-border/40 last:border-0">
               <p className="text-3xl sm:text-4xl font-extrabold font-display text-brand-blue">
-                Class-A
+                Licensed
               </p>
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-gray-400">
-                Licensed Contractor
+                EPC Contractor
               </p>
             </div>
             <div className="space-y-1.5 border-r border-brand-dark-border/40 last:border-0">
@@ -204,7 +204,7 @@ export default function Home() {
             </div>
             <div className="space-y-1.5 border-r border-brand-dark-border/40 last:border-0">
               <p className="text-3xl sm:text-4xl font-extrabold font-display text-white">
-                <Counter value={2500} suffix="+" />
+                <Counter value={1500} suffix="+" />
               </p>
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-gray-400">
                 Active Manpower
@@ -239,7 +239,7 @@ export default function Home() {
                 <Shield size={22} />
               </div>
               <div>
-                <p className="font-semibold text-white text-sm">Class-A Certified Safety</p>
+                <p className="font-semibold text-white text-sm">Certified Safety Standards</p>
                 <p className="text-gray-400 text-xs mt-0.5">Continuous field compliance audits, LOTO procedures, certified safety wear.</p>
               </div>
             </div>
@@ -265,7 +265,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="flex gap-2.5 items-start">
                 <CheckCircle size={16} className="text-brand-blue mt-0.5" />
-                <span className="text-gray-300 text-sm font-medium">Class-A Government Licensed</span>
+                <span className="text-gray-300 text-sm font-medium">Government Licensed Contractor</span>
               </div>
               <div className="flex gap-2.5 items-start">
                 <CheckCircle size={16} className="text-brand-blue mt-0.5" />

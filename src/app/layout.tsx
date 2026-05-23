@@ -54,6 +54,7 @@ export default function RootLayout({
     "alternateName": "CEBPL",
     "url": "https://www.cebpl.com",
     "logo": "https://www.cebpl.com/logo.svg",
+    "email": "chaurasiyaelectricalsbuildwell@gmail.com",
     "description": "Leading electrical contracting and EPC infrastructure development company providing HT/LT electrical works, turnkey industrial installations, and commercial electrification across India.",
     "address": {
       "@type": "PostalAddress",

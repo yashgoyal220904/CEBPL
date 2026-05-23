@@ -219,11 +219,11 @@ export const servicesData: ServiceItem[] = [
   {
     id: "government-projects",
     title: "Government Projects",
-    shortDesc: "Govt-approved Class-A contracting, utility grid extensions, institutional complexes, and tenders.",
-    longDesc: "As an approved Class-A contractor, CEBPL works with state electricity boards, municipal corporations, public works departments, and central ministries. We deliver reliable public grid extensions, electrification for government hospitals, schools, and institutional complexes in strict compliance with administrative bylaws and schedules.",
+    shortDesc: "Govt-approved electrical contracting, utility grid extensions, institutional complexes, and tenders.",
+    longDesc: "As an approved government contractor, CEBPL works with state electricity boards, municipal corporations, public works departments, and central ministries. We deliver reliable public grid extensions, electrification for government hospitals, schools, and institutional complexes in strict compliance with administrative bylaws and schedules.",
     icon: Briefcase,
     features: [
-      "Class-A contractor credential execution",
+      "Government approved contractor credentials",
       "Grid extensions, rural electrification, and feeder separations",
       "Institutional complex electrification (Govt. offices, central colleges)",
       "Strict compliance with Public Works Department (PWD) specifications",

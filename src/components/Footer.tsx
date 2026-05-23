@@ -7,6 +7,7 @@ import {
   Send, 
   MapPin, 
   Phone, 
+  Mail, 
   CheckCircle
 } from "lucide-react";
 import { servicesData } from "@/data/services";
@@ -46,7 +47,7 @@ export default function Footer() {
               <img src="/logo.png" alt="CEBPL Logo" className="h-16 w-auto object-contain" />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
-              CHAURASIYA ELECTRICALS &amp; BUILDWELL PRIVATE LIMITED (CEBPL) is a leading Class-A electrical contractor and EPC contracting company powering industrial, commercial, and government infrastructure across India.
+              CHAURASIYA ELECTRICALS &amp; BUILDWELL PRIVATE LIMITED (CEBPL) is a leading electrical contractor and EPC contracting company powering industrial, commercial, and government infrastructure across India.
             </p>
           </div>
 
@@ -153,6 +154,12 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex items-center gap-2 pt-1 border-t border-brand-dark-border/40">
+                <Mail size={14} className="text-brand-blue shrink-0" />
+                <a href="mailto:chaurasiyaelectricalsbuildwell@gmail.com" className="hover:text-white">
+                  chaurasiyaelectricalsbuildwell@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
                 <Phone size={14} className="text-brand-gold shrink-0" />
                 <span>+91 90346 95410</span>
               </div>

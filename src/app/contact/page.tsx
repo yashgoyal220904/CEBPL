@@ -115,6 +115,9 @@ export default function Contact() {
                   <p className="text-gray-400 text-xs">
                     <span className="font-semibold text-white">Phone / WhatsApp:</span> +91 90346 95410
                   </p>
+                  <p className="text-gray-400 text-xs leading-normal">
+                    <span className="font-semibold text-white">Email:</span> <a href="mailto:chaurasiyaelectricalsbuildwell@gmail.com" className="text-brand-blue hover:underline">chaurasiyaelectricalsbuildwell@gmail.com</a>
+                  </p>
                 </div>
               </div>
 
@@ -162,7 +165,7 @@ export default function Contact() {
                     Submit an <span className="text-brand-blue">Inquiry</span>
                   </h3>
                   <p className="text-gray-400 text-xs mt-1">
-                    Fill out the form below. Our team will get back to you shortly.
+                    Fill out the form below. For tender invitations, please email bidding documents directly to <a href="mailto:chaurasiyaelectricalsbuildwell@gmail.com" className="text-brand-blue hover:underline">chaurasiyaelectricalsbuildwell@gmail.com</a>.
                   </p>
                 </div>
 

@@ -18,7 +18,7 @@ export const projectsData: ProjectItem[] = [
     id: "jewar-airport-project",
     title: "Noida International Airport (Jewar Airport) Phase-1",
     category: "infrastructure",
-    client: "Tata Projects / Zurich Airport International",
+    client: "Tata Projects / Jewar Airport Project",
     location: "Jewar, Uttar Pradesh, India",
     completionDate: "Ongoing (Phase-1 Target 2026)",
     scopeOfWork: [

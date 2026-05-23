@@ -60,7 +60,7 @@ export default function About() {
             Turnkey Electrical Infrastructure Solutions
           </h1>
           <p className="text-gray-400 text-sm max-w-2xl mx-auto leading-relaxed">
-            Chaurasiya Electricals &amp; Buildwell Private Limited (CEBPL) is a Class-A certified electrical contracting company specializing in industrial networks, substations, and grid infrastructures.
+            Chaurasiya Electricals &amp; Buildwell Private Limited (CEBPL) is a certified electrical contracting company specializing in industrial networks, substations, and grid infrastructures.
           </p>
         </div>
       </section>
@@ -74,7 +74,7 @@ export default function About() {
               Corporate Profile &amp; Capability
             </h2>
             <p className="text-gray-400 text-sm leading-relaxed">
-              **CEBPL** is a fast-growing, Class-A certified electrical engineering and EPC contracting firm. We provide complete turnkey solutions starting from site planning, engineering design, load calculations, custom panels fabrication, and cable laying to final testing, commissioning, and grid synchronization.
+              **CEBPL** is a fast-growing, certified electrical engineering and EPC contracting firm. We provide complete turnkey solutions starting from site planning, engineering design, load calculations, custom panels fabrication, and cable laying to final testing, commissioning, and grid synchronization.
             </p>
             <p className="text-gray-400 text-sm leading-relaxed">
               Equipped with an inventory of specialized testing and cabling equipment, our engineering cells are geared for rapid site mobilization, maintaining absolute quality control, and obtaining statutory CEIG approvals under scheduled timelines.
@@ -83,7 +83,7 @@ export default function About() {
             {/* Highlights */}
             <div className="grid grid-cols-2 gap-6 pt-4 border-t border-brand-dark-border">
               <div className="space-y-1">
-                <p className="text-2xl font-extrabold text-brand-blue font-display">Class-A</p>
+                <p className="text-2xl font-extrabold text-brand-blue font-display">Govt Approved</p>
                 <p className="text-[10px] text-gray-400 uppercase font-semibold">Electrical License</p>
               </div>
               <div className="space-y-1">
