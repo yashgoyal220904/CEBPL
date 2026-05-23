@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, CheckCircle2 } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -59,15 +60,36 @@ export default function QuoteModal({ isOpen, onClose, prefilledService }: QuoteM
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      if (supabase) {
+        const { error } = await supabase.from("contact_submissions").insert([
+          {
+            name: formData.name,
+            company: formData.company,
+            email: formData.email,
+            phone: formData.phone,
+            service: formData.service,
+            message: formData.message,
+            type: "quote"
+          }
+        ]);
+        if (error) throw error;
+      } else {
+        // Fallback simulation
+        await new Promise(resolve => setTimeout(resolve, 1200));
+      }
+      
       setIsSuccess(true);
-    }, 1500);
+    } catch (err) {
+      console.error("Error submitting to Supabase:", err);
+      alert("Submission failed. Please check your network connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

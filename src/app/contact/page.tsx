@@ -6,6 +6,7 @@ import { Phone, MapPin, Send, CheckCircle2, Clock, Landmark, Shield } from "luci
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { supabase } from "@/lib/supabase";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -24,13 +25,28 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      if (supabase) {
+        const { error } = await supabase.from("contact_submissions").insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            subject: formData.subject,
+            message: formData.message,
+            type: "contact"
+          }
+        ]);
+        if (error) throw error;
+      } else {
+        // Fallback simulation
+        await new Promise(resolve => setTimeout(resolve, 1200));
+      }
+      
       setIsSuccess(true);
       setFormData({
         name: "",
@@ -39,7 +55,12 @@ export default function Contact() {
         subject: "",
         message: ""
       });
-    }, 1500);
+    } catch (err) {
+      console.error("Error submitting to Supabase:", err);
+      alert("Submission failed. Please check your network connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
