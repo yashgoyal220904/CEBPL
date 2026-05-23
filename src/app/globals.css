@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-brand-blue: #2DA8E0;
+  --color-brand-gold: #F4B340;
+  
+  --color-brand-dark: var(--bg-brand-dark);
+  --color-brand-dark-card: var(--bg-brand-dark-card);
+  --color-brand-dark-border: var(--border-brand-dark);
+  
+  --color-white: var(--text-white-override);
+  --color-gray-100: var(--gray-100-override);
+  --color-gray-200: var(--gray-200-override);
+  --color-gray-300: var(--text-gray-300-override);
+  --color-gray-400: var(--text-gray-400-override);
+  --color-gray-500: var(--text-gray-500-override);
+  --color-gray-600: var(--text-gray-600-override);
+  
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui;
+}
+
+:root {
+  /* Default: White / Light Theme */
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  
+  --bg-brand-dark: #F8FAFC;
+  --bg-brand-dark-card: #FFFFFF;
+  --border-brand-dark: #E2E8F0;
+  
+  --text-white-override: #0F172A;
+  --text-gray-300-override: #334155;
+  --text-gray-400-override: #475569;
+  --text-gray-500-override: #64748B;
+  --text-gray-600-override: #94A3B8;
+  
+  --gray-100-override: #F1F5F9;
+  --gray-200-override: #E2E8F0;
+  
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom Utilities for Premium Look */
+.glassmorphism {
+  background: rgba(248, 250, 252, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+.glassmorphism-card {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(15, 23, 42, 0.05) !important;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #0F172A 30%, #2DA8E0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #F4B340 0%, #0F172A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-blue {
+  box-shadow: 0 0 25px rgba(45, 168, 224, 0.06);
+}
+
+.glow-gold {
+  box-shadow: 0 0 25px rgba(244, 179, 64, 0.06);
+}
+
+/* Exceptions for solid color elements that must keep true white text */
+button.bg-brand-blue, 
+button.bg-gradient-to-r, 
+button.bg-brand-gold,
+button.bg-brand-dark-card,
+a.bg-brand-blue,
+a.bg-gradient-to-r,
+a.bg-brand-gold,
+a.bg-brand-dark-card,
+button.text-white.bg-brand-blue,
+a.text-white.bg-brand-blue,
+.bg-brand-blue, 
+.bg-brand-blue *,
+.bg-gradient-to-r, 
+.bg-gradient-to-r *,
+.bg-brand-gold, 
+.bg-brand-gold *,
+.bg-green-500\/10,
+.bg-green-500\/10 *,
+.bg-brand-blue\/10,
+.bg-brand-blue\/10 * {
+  --text-white-override: #FFFFFF !important;
+  --text-gray-300-override: #F1F5F9 !important;
+  --text-gray-400-override: #E2E8F0 !important;
+  --text-gray-500-override: #CBD5E1 !important;
+}
+
+/* Exceptions for active/tab filters in projects & blogs */
+button.bg-brand-blue.text-white,
+button.bg-brand-blue {
+  color: #FFFFFF !important;
+}
+
+/* Keep slider controls and buttons in modals/carousels clean */
+.relative.z-10.space-y-6,
+.relative.z-10.space-y-6 * {
+  --text-white-override: #0F172A !important;
+}
+
+/* Footer Exception - Keeps Dark Mode */
+footer, 
+footer * {
+  --background: #0A0A0A !important;
+  --foreground: #FFFFFF !important;
+  --bg-brand-dark: #0A0A0A !important;
+  --bg-brand-dark-card: #141414 !important;
+  --border-brand-dark: #222222 !important;
+  --text-white-override: #FFFFFF !important;
+  --text-gray-300-override: #D1D5DB !important;
+  --text-gray-400-override: #9CA3AF !important;
+  --text-gray-500-override: #6B7280 !important;
+}
+
+/* Header & Top Banner Exception - Keeps Dark Mode for logo readability and premium contrast */
+header, 
+header *,
+.top-nav-banner,
+.top-nav-banner * {
+  --background: #0A0A0A !important;
+  --foreground: #FFFFFF !important;
+  --bg-brand-dark: #0A0A0A !important;
+  --bg-brand-dark-card: #141414 !important;
+  --border-brand-dark: #222222 !important;
+  --text-white-override: #FFFFFF !important;
+  --text-gray-300-override: #D1D5DB !important;
+  --text-gray-400-override: #9CA3AF !important;
+  --text-gray-500-override: #6B7280 !important;
+}
+
+header.glassmorphism {
+  background: rgba(10, 10, 10, 0.92) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Mega Menu inside Header Exception - Keeps Dark Mode Dropdowns */
+.absolute.left-0.right-0.top-full.bg-brand-dark-card * {
+  --text-white-override: #FFFFFF !important;
+  --text-gray-400-override: #9CA3AF !important;
+  --text-gray-500-override: #6B7280 !important;
+}
+.absolute.left-0.right-0.top-full.bg-brand-dark-card a:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Megamenu sub-links hover background and alignment on white card */
+.absolute.left-0.right-0.top-full.bg-brand-dark-card {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.absolute.left-0.right-0.top-full.bg-brand-dark-card a:hover {
+  background-color: #F1F5F9 !important;
+}
+
+/* Quote modal form and overlays */
+.fixed.inset-0.z-50.flex.items-center.justify-center.p-4 * {
+  --text-white-override: #0F172A;
+  --text-gray-400-override: #475569;
+}
+.fixed.inset-0.z-50.flex.items-center.justify-center.p-4 button[type="submit"] {
+  --text-white-override: #FFFFFF !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2DA8E0;
+}
+
+/* Animation utilities */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
