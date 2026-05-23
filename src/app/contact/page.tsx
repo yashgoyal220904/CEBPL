@@ -91,28 +91,15 @@ export default function Contact() {
           {/* Left Column (Details) */}
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-4">
-              <h2 className="text-2xl font-bold font-display text-white border-l-4 border-brand-blue pl-4">
-                Corporate Headquarters
+              <h2 className="text-2xl font-bold font-display text-white border-l-4 border-brand-gold pl-4">
+                Registered Office
               </h2>
               <p className="text-gray-400 text-xs leading-relaxed">
-                Our main offices are located in Noida, UP, coordinating materials logistics and design cells for projects operating nationwide.
+                Our official corporate headquarters and legal registry are registered in Vaishali, Bihar, coordinating projects operating nationwide.
               </p>
             </div>
 
             <div className="space-y-5">
-              {/* Corporate Office */}
-              <div className="flex gap-4 p-4 bg-brand-dark-card border border-brand-dark-border rounded-xl hover:border-brand-blue/20 transition-all">
-                <div className="w-10 h-10 rounded-lg bg-brand-blue/10 flex items-center justify-center text-brand-blue shrink-0">
-                  <MapPin size={20} />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white">Corporate Office (Noida)</h4>
-                  <p className="text-gray-400 text-xs mt-1 leading-relaxed">
-                    Corporate Plaza, Block C, Sector 62, Noida, Uttar Pradesh - 201301
-                  </p>
-                </div>
-              </div>
-
               {/* Registered Office */}
               <div className="flex gap-4 p-4 bg-brand-dark-card border border-brand-dark-border rounded-xl hover:border-brand-gold/20 transition-all">
                 <div className="w-10 h-10 rounded-lg bg-brand-gold/10 flex items-center justify-center text-brand-gold shrink-0">
@@ -322,7 +309,7 @@ export default function Contact() {
             Geographical Coordinates
           </h3>
           <p className="text-gray-400 text-xs max-w-lg">
-            Our corporate headquarters coordinates operations across India. Check our location overlay details below.
+            Our registered office coordinates operations across India. Check our location overlay details below.
           </p>
         </div>
 
@@ -346,18 +333,18 @@ export default function Contact() {
           <div className="relative z-10 space-y-4 max-w-sm mx-auto">
             {/* Glowing target */}
             <div className="relative w-16 h-16 mx-auto flex items-center justify-center">
-              <span className="absolute -inset-4 rounded-full bg-brand-blue/10 animate-ping"></span>
-              <span className="absolute -inset-2 rounded-full bg-brand-blue/20 animate-pulse"></span>
-              <div className="w-12 h-12 bg-brand-dark border border-brand-blue rounded-full flex items-center justify-center text-brand-blue glow-blue">
+              <span className="absolute -inset-4 rounded-full bg-brand-gold/10 animate-ping"></span>
+              <span className="absolute -inset-2 rounded-full bg-brand-gold/20 animate-pulse"></span>
+              <div className="w-12 h-12 bg-brand-dark border border-brand-gold rounded-full flex items-center justify-center text-brand-gold glow-gold">
                 <MapPin size={24} fill="currentColor" />
               </div>
             </div>
             <div className="space-y-1">
-              <p className="text-sm font-bold text-white font-display">CEBPL Head Office</p>
-              <p className="text-xs text-brand-gold font-mono">28.6273&deg; N, 77.3725&deg; E</p>
+              <p className="text-sm font-bold text-white font-display">CEBPL Registered Office</p>
+              <p className="text-xs text-brand-gold font-mono">25.7275&deg; N, 85.4746&deg; E</p>
               <p className="text-[11px] text-gray-400 leading-relaxed mt-1.5">
-                Sector 62, Noida, Uttar Pradesh. <br />
-                Connected directly to National Highway 24.
+                Block-Jandaha, Vaishali, Bihar - 844505. <br />
+                Official corporate registered legal seat.
               </p>
             </div>
             <div className="pt-2">
@@ -365,7 +352,7 @@ export default function Contact() {
                 href="https://maps.google.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-brand-dark hover:bg-brand-dark-border border border-brand-dark-border hover:border-brand-blue/30 text-white px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider inline-block cursor-pointer transition"
+                className="bg-brand-dark hover:bg-brand-dark-border border border-brand-dark-border hover:border-brand-gold/30 text-white px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider inline-block cursor-pointer transition"
               >
                 Open in Google Maps
               </a>

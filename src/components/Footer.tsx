@@ -140,13 +140,6 @@ export default function Footer() {
             {/* Corporate Location Details */}
             <div className="space-y-3 text-xs text-gray-400">
               <div className="flex items-start gap-2">
-                <MapPin size={14} className="text-brand-blue shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-semibold text-white">Corporate Office:</p>
-                  <p>Corporate Plaza, Sector 62, Noida, UP - 201301</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
                 <MapPin size={14} className="text-brand-gold shrink-0 mt-0.5" />
                 <div>
                   <p className="font-semibold text-white">Registered Office:</p>
