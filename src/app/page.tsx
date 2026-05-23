@@ -16,8 +16,6 @@ import {
   HardHat, 
   PhoneCall, 
   Activity,
-  ChevronLeft,
-  ChevronRight,
   Sparkles
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
