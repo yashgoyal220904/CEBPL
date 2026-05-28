@@ -16,7 +16,9 @@ import {
   CheckCircle2, 
   X,
   FileText,
-  User
+  User,
+  Activity,
+  AlertCircle
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -34,6 +36,13 @@ interface Submission {
   type: "contact" | "quote";
 }
 
+interface DiagnosticStep {
+  id: string;
+  name: string;
+  status: "success" | "error" | "loading";
+  message: string;
+}
+
 export default function AdminDashboard() {
   const [passwordInput, setPasswordInput] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -44,6 +53,83 @@ export default function AdminDashboard() {
   const [loginError, setLoginError] = useState("");
   const [isDbProduction, setIsDbProduction] = useState(false);
   const [noticeMsg, setNoticeMsg] = useState("");
+
+  // Diagnostics
+  const [isDiagOpen, setIsDiagOpen] = useState(false);
+  const [diagSteps, setDiagSteps] = useState<DiagnosticStep[]>([]);
+
+  const runDiagnostics = async () => {
+    setIsDiagOpen(true);
+    const initialSteps: DiagnosticStep[] = [
+      { id: "url", name: "Client-side URL check", status: "loading" as const, message: "" },
+      { id: "key", name: "Client-side Key check", status: "loading" as const, message: "" },
+      { id: "client", name: "Supabase Client Helper Initialization", status: "loading" as const, message: "" },
+      { id: "server", name: "Server-side Submissions API Accessibility", status: "loading" as const, message: "" },
+      { id: "db", name: "Direct Database Query Connectivity", status: "loading" as const, message: "" },
+    ];
+    setDiagSteps(initialSteps);
+
+    const updateStep = (id: string, status: "success" | "error" | "loading", message: string) => {
+      setDiagSteps(prev => prev.map(s => s.id === id ? { ...s, status, message } : s));
+    };
+
+    // Step 1: URL check
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    if (url && url.startsWith("https://")) {
+      updateStep("url", "success", `URL is present: ${url}`);
+    } else {
+      updateStep("url", "error", `URL is missing or invalid: ${url || "not set"}`);
+    }
+
+    // Step 2: Key check
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+    if (key && key.length > 20) {
+      updateStep("key", "success", `Anon Key is present: ${key.substring(0, 10)}... (Length: ${key.length})`);
+    } else {
+      updateStep("key", "error", `Anon Key is missing or too short: ${key || "not set"}`);
+    }
+
+    // Step 3: Client check
+    const { supabase } = await import("@/lib/supabase");
+    if (supabase) {
+      updateStep("client", "success", "Supabase Client successfully initialized.");
+    } else {
+      updateStep("client", "error", "Supabase Client helper is null. Check isConfigured status in src/lib/supabase.ts.");
+    }
+
+    // Step 4: Server accessibility
+    try {
+      const res = await fetch("/api/admin/submissions", {
+        headers: { "Authorization": "test_invalid_pass" }
+      });
+      if (res.status === 401) {
+        updateStep("server", "success", "Server submissions API is responding. Authenticated check returned 401 Unauthorized (expected).");
+      } else {
+        const body = await res.json().catch(() => ({}));
+        updateStep("server", "error", `Server API returned status ${res.status}: ${body.error || "unknown error"}`);
+      }
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "network error";
+      updateStep("server", "error", `Failed to fetch API from server: ${msg}`);
+    }
+
+    // Step 5: Direct DB Query
+    if (supabase) {
+      try {
+        const { data, error } = await supabase.from("contact_submissions").select("id").limit(1);
+        if (error) {
+          updateStep("db", "error", `Database error: ${error.message} (${error.code || "no code"})`);
+        } else {
+          updateStep("db", "success", `Successfully read database! Connection is active. Found ${data?.length || 0} records.`);
+        }
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : "unknown exception";
+        updateStep("db", "error", `Exception during select query: ${msg}`);
+      }
+    } else {
+      updateStep("db", "error", "Skipped: Supabase client is not initialized.");
+    }
+  };
 
   // Filters
   const [searchTerm, setSearchTerm] = useState("");
@@ -271,6 +357,15 @@ export default function AdminDashboard() {
                 ) : (
                   <span>Access Dashboard</span>
                 )}
+              </button>
+
+              <button
+                type="button"
+                onClick={runDiagnostics}
+                className="w-full bg-brand-dark-card border border-brand-dark-border hover:border-brand-gold/30 text-brand-gold py-2.5 rounded-lg font-bold text-xs cursor-pointer transition-all duration-200 flex justify-center items-center gap-2"
+              >
+                <Activity size={14} />
+                <span>Run Connection Diagnostics</span>
               </button>
             </form>
           </div>
@@ -639,6 +734,73 @@ export default function AdminDashboard() {
                   WhatsApp Chat
                 </a>
               </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* DIAGNOSTICS MODAL */}
+      {isDiagOpen && (
+        <div className="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-brand-dark-card border border-brand-dark-border rounded-2xl p-6 sm:p-8 max-w-lg w-full relative space-y-6 shadow-2xl"
+          >
+            <button
+              onClick={() => setIsDiagOpen(false)}
+              className="absolute right-4 top-4 text-gray-500 hover:text-white cursor-pointer transition"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="space-y-1">
+              <h2 className="text-xl font-bold font-display text-white flex items-center gap-2">
+                <Activity size={20} className="text-brand-gold" />
+                Connection Diagnostics
+              </h2>
+              <p className="text-gray-400 text-xs">
+                Real-time checks to inspect client-side keys and database connectivity.
+              </p>
+            </div>
+
+            <hr className="border-brand-dark-border" />
+
+            <div className="space-y-4">
+              {diagSteps.map((step) => (
+                <div key={step.id} className="bg-brand-dark/40 border border-brand-dark-border/40 p-3.5 rounded-lg text-xs space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-gray-200">{step.name}</span>
+                    <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border uppercase ${
+                      step.status === "success" 
+                        ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                        : step.status === "error"
+                        ? "bg-red-500/10 text-red-400 border-red-500/20"
+                        : "bg-gray-500/10 text-gray-400 border-gray-500/20 animate-pulse"
+                    }`}>
+                      {step.status === "success" && <CheckCircle2 size={10} />}
+                      {step.status === "error" && <AlertCircle size={10} />}
+                      {step.status}
+                    </span>
+                  </div>
+                  {step.message && (
+                    <p className={`text-[10px] leading-relaxed break-all font-mono ${
+                      step.status === "success" ? "text-gray-400" : "text-red-400"
+                    }`}>
+                      {step.message}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2 text-center">
+              <button
+                onClick={() => setIsDiagOpen(false)}
+                className="bg-brand-dark hover:bg-brand-dark-border border border-brand-dark-border text-white px-6 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider cursor-pointer transition w-full"
+              >
+                Close Diagnostics
+              </button>
             </div>
           </motion.div>
         </div>
