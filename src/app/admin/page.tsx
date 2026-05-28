@@ -120,7 +120,12 @@ export default function AdminDashboard() {
         if (response.status === 401) {
           setLoginError("Invalid password. Please try again.");
         } else {
-          setLoginError("Server error. Please verify configuration.");
+          try {
+            const data = await response.json();
+            setLoginError(`Server Error: ${data.error || "Please verify configuration."}`);
+          } catch {
+            setLoginError("Server error. Please verify configuration.");
+          }
         }
       }
     } catch (err) {
