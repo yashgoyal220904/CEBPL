@@ -36,7 +36,23 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ submissions: data || [], isMock: false });
   } catch (error: unknown) {
     console.error("Dashboard API Error:", error);
-    const message = error instanceof Error ? error.message : "Failed to fetch data";
+    let message = "Failed to fetch data";
+    if (error && typeof error === "object") {
+      const errObj = error as Record<string, unknown>;
+      if (typeof errObj.message === "string") {
+        message = errObj.message;
+      } else if (typeof errObj.details === "string") {
+        message = errObj.details;
+      } else {
+        try {
+          message = JSON.stringify(error);
+        } catch {
+          // ignore
+        }
+      }
+    } else if (typeof error === "string") {
+      message = error;
+    }
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
