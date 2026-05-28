@@ -30,6 +30,10 @@ export default function QuoteModal({ isOpen, onClose, prefilledService }: QuoteM
     }
   }, [prefilledService, isOpen]);
 
+  useEffect(() => {
+    console.log("CEBPL Quote Modal Database Connection Active:", !!supabase);
+  }, []);
+
   // Prevent scroll when modal is open
   useEffect(() => {
     if (isOpen) {
